@@ -19,8 +19,18 @@ function numberOfCharacters(string) {
    // Las letras deben estar en orden alfabético.
    // [EJEMPLO]: "adsjfdsfsfjsdjfhacabcsbajda" ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 }
    // Tu código:
-   var arrayStr = string.split('');
-   var arrayLetras = [a,b,c,d,e,f];
+   let ArrayStr = string.split('');
+   let obj = ArrayStr.reduce((obj, letra) => {
+     obj[letra] ? obj[letra] += 1 : obj[letra] = 1;
+     return obj;
+   }, {});
+   let arrayKeys = Object.keys(obj);
+   arrayKeys = arrayKeys.sort();
+   let objOrdenado = {};
+   arrayKeys.forEach((letra)=>{
+     objOrdenado[letra] = obj[letra];
+   });
+   return objOrdenado;
    
 }
 
@@ -62,8 +72,9 @@ function capicua(numero) {
    // Si el número que recibes es capicúa debes retornar el string: "Es capicua".
    // Caso contrario: "No es capicua".
    // Tu código:
-
-   
+   let numStr = numero.toString();
+   let numAlReves = numStr.split('').reverse().join('');
+   return numStr === numAlReves ? "Es capicua" : "No es capicua";
 }
 
 function deleteAbc(string) {
@@ -84,7 +95,8 @@ function sortArray(arrayOfStrings) {
    // de la longitud de cada string.
    // [EJEMPLO]: ["You", "are", "beautiful", "looking"]  ---> [“You", "are", "looking", "beautiful"]
    // Tu código:
-   arra
+   array = arrayOfStrings.sort((a, b) => a.length - b.length);
+   return array;
 }
 
 function buscoInterseccion(array1, array2) {
@@ -94,8 +106,8 @@ function buscoInterseccion(array1, array2) {
    // Si no tienen elementos en común, retornar un arreglo vacío.
    // [PISTA]: los arreglos no necesariamente tienen la misma longitud.
    // Tu código:
-
-   
+   let array3 = array1.filter(num => array2.includes(num));
+   return array3;
 }
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
